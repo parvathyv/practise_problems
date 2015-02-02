@@ -47,4 +47,32 @@ def space_replace(string)
   string
 end
 
-puts space_replace('this is a main')
+
+def iter_robot(n)
+  right = 0
+  down = 0
+
+  while true
+    print "right: ", right, "  down: ", down, $/
+    if right != n-1 && down != n-1
+      # possible moves
+      move = rand(2)
+      # actual move
+      if move == 0
+        right += 1
+      else
+        down += 1
+      end
+    elsif right == n-1 && down != n-1
+      down += 1
+    elsif down == n-1 && right != n-1
+      right += 1
+    else
+      break
+    end
+  end
+end
+
+#puts space_replace('this is a main')
+puts iter_robot(4)
+
