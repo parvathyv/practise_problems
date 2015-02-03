@@ -69,6 +69,26 @@ class SinglyLinkedList
       end
     end
 
+
+    def remove_duplicates
+      current_node = head
+      prev_node = head
+      first_node = head
+      current_node = current_node.next
+      while current_node.next != nil
+        no_check = first_node.value
+        while current_node.next != nil
+          if current_node.value == no_check
+            prev_node.next = current_node.next
+          end
+          prev_node = current_node
+          current_node = current_node.next
+        end
+        first_node = first_node.next
+        current_node = first_node.next
+      end
+    end
+
     def nth(n)
       ctr = 1
       current_node = head
@@ -102,11 +122,13 @@ class SinglyLinkedList
 
 end
 
-link = SinglyLinkedList.new(0)
+link = SinglyLinkedList.new(5)
+link.add(4)
 1.upto(10) do|index|
   link.add(index)
 end
 link.iterate
 puts $/
-link.nth_last(3)
-
+#link.nth_last(3)
+link.remove_duplicates
+link.iterate
