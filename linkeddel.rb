@@ -1,13 +1,12 @@
-require 'pry'
 class Node
     attr_accessor :value, :next
 
     def initialize(value = nil)
-      @value = value
+        @value = value
     end
 
     def to_s
-      @value
+        @value
     end
 end
 
@@ -33,7 +32,7 @@ class SinglyLinkedList
 
     def iterate
       current_node = head
-      puts current_node.value
+       puts current_node.value
       while current_node.next != nil
         current_node = current_node.next
         puts current_node.value
@@ -52,54 +51,18 @@ class SinglyLinkedList
     end
 
     def remove(value)
-      if head.value == value
+      if head == value
         head = head.next
+
       else
-        current_node = head.next
-        prev_node = head
-        while current_node
-          if current_node.value == value
-            prev_node.next = current_node.next
-            return true
-          end
-          prev_node = current_node
-          current_node = current_node.next
-        end
-        nil
-      end
-    end
+        while current_node.next != nil
+          if current_node.value != value
+            current_node = current_node.next
+          else
 
-    def nth(n)
-      ctr = 1
-      current_node = head
-      while current_node.next != nil
-        if ctr < n
-          ctr += 1
-          current_node = current_node.next
-        else
-          puts current_node.value
-          break
         end
       end
     end
-
-    def nth_last(n)
-      ctr = 1
-      current_node = head
-      while current_node.next != nil
-        ctr += 1
-        current_node = current_node.next
-      end
-      index_to_find = ctr - n
-      ctr = 1
-      current_node = head
-      while ctr <= index_to_find
-        current_node = current_node.next
-        ctr += 1
-      end
-      puts current_node.value
-    end
-
 end
 
 link = SinglyLinkedList.new(0)
@@ -107,6 +70,3 @@ link = SinglyLinkedList.new(0)
   link.add(index)
 end
 link.iterate
-puts $/
-link.nth_last(3)
-
